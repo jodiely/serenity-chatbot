@@ -15,11 +15,32 @@
  */
 
 'use strict';
-
+var Botkit = require('botkit');
 var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
 var Conversation = require('watson-developer-cloud/conversation/v1'); // watson sdk
+var watsonMiddleware = require('botkit-middleware-watson')({
+  username: process.env.CONVERSATION_USERNAME,
+  password: process.env.CONVERSATION_PASSWORD,
+  workspace_id: process.env.WORKSPACE_ID,
+  version_date: '2016-09-20'
+});
 
+// Configuring Slack bot
+var slackController = Botkit.slackbot();
+var slackBot = slackController.spawn({
+  token: process.env.SLACK_TOKEN
+});
+
+slackController.middleware.receive.use(watsonMiddleware.receive);
+slackBot.startRTM();
+
+slackController.hears(['.*'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+  bot.reply(message, message.watsonData.output.text.join('\n'));
+});
+
+
+// Express app:
 var app = express();
 
 // Bootstrap application settings
