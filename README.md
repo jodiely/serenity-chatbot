@@ -1,6 +1,6 @@
 # Serenity Chatbot 
 
-A chatbot integrated in Slack designed to help reduce stress for students in the Immersive Software Engineering Program at Grace Hopper Academy. Built with [!Watson Conversation API](https://www.ibm.com/watson/developercloud/conversation.html) and [!Botkit middleware](https://github.com/watson-developer-cloud/botkit-middleware).
+A chatbot integrated in Slack designed to help reduce stress for students in the Immersive Software Engineering Program at Grace Hopper Academy. Built with [Watson Conversation API](https://www.ibm.com/watson/developercloud/conversation.html) and [Botkit middleware](https://github.com/watson-developer-cloud/botkit-middleware).
 
 ## Presentation Video
 
